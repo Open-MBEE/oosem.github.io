@@ -3,453 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OOSEM — Object-Oriented Systems Engineering Method</title>
+<title>Coming soon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Spectral:ital@1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg-base:#0B1A2E;
     --bg-panel:#0F2340;
-    --bg-panel-raised:#132a4c;
     --grid-line: rgba(143,166,191,0.14);
     --grid-line-strong: rgba(143,166,191,0.28);
     --text-primary:#EAF0F6;
     --text-muted:#93AAC4;
     --text-faint:#5D7690;
     --amber:#E8A33D;
-    --amber-dim: rgba(232,163,61,0.16);
-    --rule: rgba(234,240,246,0.14);
     --serif: 'Spectral', Georgia, serif;
-    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
     --mono: 'IBM Plex Mono', 'SFMono-Regular', monospace;
   }
-
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-
+  html,body{height:100%;}
   body{
     margin:0;
     background:
-      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 100% 42px,
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 42px 100%,
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 42px 42px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 42px 42px,
       var(--bg-base);
     color:var(--text-primary);
-    font-family:var(--sans);
-    line-height:1.6;
+    font-family:var(--mono);
+    display:flex;
+    align-items:center;
+    justify-content:center;
     -webkit-font-smoothing:antialiased;
   }
-
-  a{color:var(--amber); text-decoration:none; border-bottom:1px solid rgba(232,163,61,0.35); transition:border-color .15s ease, color .15s ease;}
-  a:hover{border-color:var(--amber);}
-  a:focus-visible, button:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
-
-  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
-  .col{max-width:680px;}
-
-  /* ---------- Header / hero ---------- */
-  header.hero{
-    padding:64px 0 40px;
-    border-bottom:1px solid var(--rule);
+  .card{
+    max-width:520px;
+    padding:0 24px;
+    text-align:left;
   }
-  .tag-line{
-    font-family:var(--mono);
+  .mark{
     font-size:13px;
-    color:var(--text-faint);
+    color:var(--amber);
     letter-spacing:.02em;
-    margin:0 0 18px;
+    margin:0 0 22px;
   }
-  .tag-line span{color:var(--amber);}
   h1{
     font-family:var(--serif);
     font-weight:600;
-    font-size:clamp(34px, 5vw, 52px);
-    line-height:1.1;
-    margin:0 0 18px;
-    max-width:15ch;
+    font-size:clamp(30px, 6vw, 44px);
+    line-height:1.15;
+    margin:0 0 16px;
   }
-  .dek{
-    font-size:18px;
+  p{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
     color:var(--text-muted);
-    max-width:56ch;
-    margin:0 0 8px;
+    line-height:1.7;
+    margin:0 0 28px;
+    max-width:48ch;
   }
-  .origin-note{
-    font-size:14px;
-    color:var(--text-faint);
-    margin-top:14px;
-  }
-
-  /* ---------- Diagram ---------- */
-  .diagram-panel{
-    margin:40px 0 0;
-    background:var(--bg-panel);
+  .frame{
     border:1px solid var(--grid-line-strong);
-    border-radius:2px;
-    padding:26px 22px 20px;
-    overflow-x:auto;
-  }
-  .diagram-caption{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--text-faint);
-    margin:14px 2px 0;
-  }
-  svg text{font-family:var(--mono); fill:var(--text-primary);}
-  .step-box{fill:var(--bg-panel-raised); stroke:var(--grid-line-strong); stroke-width:1;}
-  .step-box.iterate{stroke:var(--amber); stroke-dasharray:3 3;}
-  .flow-line{stroke:var(--text-faint); stroke-width:1.4; fill:none; marker-end:url(#arrow);}
-  .flow-line.loop{stroke:var(--amber); stroke-width:1.2; stroke-dasharray:4 3;}
-  .step-label{font-size:12.5px;}
-  .step-index{font-size:11px; fill:var(--amber);}
-
-  /* ---------- Sections ---------- */
-  section{padding:52px 0;}
-  section + section{border-top:1px solid var(--rule);}
-
-  .section-mark{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--amber);
-    margin:0 0 10px;
-  }
-  h2{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:28px;
-    margin:0 0 20px;
-  }
-  h3{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:19px;
-    margin:0 0 8px;
-  }
-  p{margin:0 0 16px; color:var(--text-primary);}
-  .muted{color:var(--text-muted);}
-
-  /* Activities list — genuinely sequential, so numbering is warranted */
-  .activity-list{
-    list-style:none;
-    margin:0;
-    padding:0;
-    display:grid;
-    gap:0;
-    border-top:1px solid var(--rule);
-  }
-  .activity-list li{
-    display:grid;
-    grid-template-columns:56px 1fr;
-    gap:18px;
-    padding:20px 0;
-    border-bottom:1px solid var(--rule);
-  }
-  .activity-list .num{
-    font-family:var(--mono);
-    color:var(--amber);
-    font-size:14px;
-    padding-top:2px;
-  }
-  .activity-list h3{margin-bottom:6px;}
-  .activity-list p{margin-bottom:0; color:var(--text-muted); font-size:15px;}
-
-  /* Comparison note */
-  .aside{
     background:var(--bg-panel);
-    border-left:2px solid var(--amber);
-    padding:16px 20px;
-    margin:26px 0;
-    font-size:15px;
-    color:var(--text-muted);
-  }
-  .aside strong{color:var(--text-primary); font-weight:500;}
-
-  /* Resource cards */
-  .resource-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:1px;
-    background:var(--rule);
-    border:1px solid var(--rule);
-  }
-  .resource-card{
-    background:var(--bg-base);
-    padding:22px 22px 20px;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .resource-kind{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--text-faint);
-  }
-  .resource-card h3{font-size:17px; margin-bottom:2px;}
-  .resource-card p{font-size:14px; color:var(--text-muted); margin-bottom:6px;}
-  .resource-card a.go{
-    font-family:var(--mono);
-    font-size:13px;
-    border-bottom:none;
-    color:var(--amber);
-    margin-top:auto;
-  }
-  .resource-card a.go:hover{text-decoration:underline;}
-
-  /* Reading list */
-  .reading-list{margin:0; padding:0; list-style:none;}
-  .reading-list li{
-    padding:14px 0;
-    border-bottom:1px solid var(--rule);
-    font-size:15px;
-    color:var(--text-muted);
-  }
-  .reading-list li:first-child{border-top:1px solid var(--rule);}
-  .reading-list .cite-year{font-family:var(--mono); color:var(--text-faint); font-size:13px;}
-  .reading-list strong{color:var(--text-primary); font-weight:500;}
-
-  footer{
-    padding:36px 0 60px;
+    padding:16px 18px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
     font-size:13px;
     color:var(--text-faint);
-    font-family:var(--mono);
   }
-
-  @media (max-width:680px){
-    .resource-grid{grid-template-columns:1fr;}
-    .activity-list li{grid-template-columns:32px 1fr;}
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--amber);
+    animation:pulse 1.8s ease-in-out infinite;
+    flex:none;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:.25;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .dot{animation:none;}
   }
 </style>
 </head>
 <body>
-
-<div class="wrap">
-
-  <header class="hero">
-    <p class="tag-line">MBSE METHOD BRIEF <span>·</span> SysML-based, INCOSE-sponsored</p>
-    <h1>Object&#8209;Oriented Systems Engineering Method</h1>
-    <p class="dek col">OOSEM is a top-down, scenario-driven approach to model-based systems engineering that treats a system as a set of interacting objects — allocating behavior to structure through a repeated, iterative cycle rather than a single pass of decomposition.</p>
-    <p class="origin-note">Originated 1998 · developed jointly by Lockheed Martin and the INCOSE OOSEM Working Group · modeled in SysML</p>
-
-    <div class="diagram-panel">
-      <svg viewBox="0 0 920 300" width="100%" role="img" aria-label="OOSEM activity flow: needs analysis, requirements analysis, architecture and design synthesis, verification, with an iteration loop back to requirements analysis">
-        <defs>
-          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#5D7690"></path>
-          </marker>
-        </defs>
-
-        <!-- boxes -->
-        <g>
-          <rect class="step-box" x="10" y="90" width="150" height="70" rx="2"></rect>
-          <text class="step-index" x="22" y="112">01</text>
-          <text class="step-label" x="22" y="132">Needs</text>
-          <text class="step-label" x="22" y="148">analysis</text>
-        </g>
-
-        <g>
-          <rect class="step-box" x="200" y="90" width="150" height="70" rx="2"></rect>
-          <text class="step-index" x="212" y="112">02</text>
-          <text class="step-label" x="212" y="132">Requirements</text>
-          <text class="step-label" x="212" y="148">analysis</text>
-        </g>
-
-        <g>
-          <rect class="step-box" x="390" y="90" width="170" height="70" rx="2"></rect>
-          <text class="step-index" x="402" y="112">03</text>
-          <text class="step-label" x="402" y="132">Logical / physical</text>
-          <text class="step-label" x="402" y="148">architecture</text>
-        </g>
-
-        <g>
-          <rect class="step-box" x="600" y="90" width="150" height="70" rx="2"></rect>
-          <text class="step-index" x="612" y="112">04</text>
-          <text class="step-label" x="612" y="132">Design</text>
-          <text class="step-label" x="612" y="148">synthesis</text>
-        </g>
-
-        <g>
-          <rect class="step-box" x="790" y="90" width="120" height="70" rx="2"></rect>
-          <text class="step-index" x="802" y="112">05</text>
-          <text class="step-label" x="802" y="132">Verification</text>
-          <text class="step-label" x="802" y="148">&amp; validation</text>
-        </g>
-
-        <!-- forward flow -->
-        <path class="flow-line" d="M160,125 L200,125"></path>
-        <path class="flow-line" d="M350,125 L390,125"></path>
-        <path class="flow-line" d="M560,125 L600,125"></path>
-        <path class="flow-line" d="M750,125 L790,125"></path>
-
-        <!-- trade studies branch -->
-        <rect class="step-box" x="390" y="205" width="170" height="55" rx="2"></rect>
-        <text class="step-label" x="402" y="230">Trade studies &amp;</text>
-        <text class="step-label" x="402" y="246">analysis</text>
-        <path class="flow-line" d="M475,205 L475,160" marker-end="none"></path>
-        <path class="flow-line" d="M475,160 L475,167" ></path>
-
-        <!-- iteration loop back to requirements -->
-        <path class="flow-line loop" d="M700,90 C700,40 300,40 275,90"></path>
-        <text x="440" y="34" font-size="11.5" fill="#E8A33D" font-family="IBM Plex Mono">iterate as the design matures</text>
-      </svg>
-      <p class="diagram-caption">Simplified from INCOSE's OOSEM activity model — the method cycles through these activities repeatedly rather than completing them once in sequence.</p>
-    </div>
-  </header>
-
-  <section id="what">
-    <p class="section-mark">01 — What it is</p>
-    <h2>An object-oriented method for systems, not just software</h2>
-    <div class="col">
-      <p>OOSEM applies object-oriented analysis and design concepts — long established in software engineering — to the broader practice of systems engineering. It is a tool- and vendor-neutral methodology: no single company owns an OOSEM product, and it can be carried out with any SysML-capable modeling tool paired with a requirements management tool.</p>
-      <p>The method covers the core activities any systems engineer would recognize — needs analysis, requirements analysis, architecture definition, trade studies, and verification — but organizes them around objects and their interactions rather than a purely functional decomposition. That framing is meant to ease integration with object-oriented software development, hardware development, and test processes downstream.</p>
-      <div class="aside">OOSEM was developed starting in <strong>1998</strong> as a joint effort involving Lockheed Martin engineers and what became the INCOSE Object-Oriented Systems Engineering Method Working Group, predating SysML itself — the method was later re-expressed using SysML once the language was standardized by the OMG.</div>
-    </div>
-  </section>
-
-  <section id="how">
-    <p class="section-mark">02 — How it works</p>
-    <h2>Top-down, scenario-driven, and iterative</h2>
-    <div class="col">
-      <p>OOSEM starts from operational scenarios and works down: black-box behavior is defined first, then allocated to a logical architecture of interacting objects, then refined into a physical design. Each pass through the cycle decomposes objects further, allocates more detailed behavior, and produces requirements specific enough to hand to implementers.</p>
-      <p class="muted">The approach shares its top-down, scenario-driven character with methods such as the Harmony process and the Rational Unified Process for Systems Engineering (RUP SE), and it draws on techniques including causal analysis, logical decomposition, node distribution analysis, control strategy definition, and parametrics to handle different kinds of system concerns as they arise.</p>
-    </div>
-  </section>
-
-  <section id="activities">
-    <p class="section-mark">03 — Core activities</p>
-    <h2>What the cycle actually contains</h2>
-    <ol class="activity-list">
-      <li>
-        <span class="num">01</span>
-        <div>
-          <h3>Needs analysis</h3>
-          <p>Establish the problem the system must solve and the stakeholders whose needs define success, before any solution language enters the picture.</p>
-        </div>
-      </li>
-      <li>
-        <span class="num">02</span>
-        <div>
-          <h3>Requirements analysis</h3>
-          <p>Translate needs and operational scenarios into black-box system requirements, capturing required behavior without presupposing a design.</p>
-        </div>
-      </li>
-      <li>
-        <span class="num">03</span>
-        <div>
-          <h3>Architecture &amp; logical decomposition</h3>
-          <p>Allocate behavior to a logical architecture of interacting objects, then decompose those objects into a physical architecture of components.</p>
-        </div>
-      </li>
-      <li>
-        <span class="num">04</span>
-        <div>
-          <h3>Trade studies &amp; analysis</h3>
-          <p>Compare candidate architectures and parameter sets against measures of effectiveness to justify design decisions.</p>
-        </div>
-      </li>
-      <li>
-        <span class="num">05</span>
-        <div>
-          <h3>Design synthesis</h3>
-          <p>Refine the physical architecture into a design specific enough to be implemented, tested, and integrated.</p>
-        </div>
-      </li>
-      <li>
-        <span class="num">06</span>
-        <div>
-          <h3>Verification &amp; validation</h3>
-          <p>Confirm the delivered system satisfies its requirements and, ultimately, the original stakeholder needs — feeding lessons back into earlier activities as needed.</p>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <section id="incose">
-    <p class="section-mark">04 — INCOSE resources</p>
-    <h2>Where to go for the source material</h2>
-    <p class="col muted">OOSEM is stewarded by INCOSE's Object-Oriented Systems Engineering Method Working Group. These are the primary places to find current working-group activity, charters, and background material.</p>
-
-    <div class="resource-grid">
-      <div class="resource-card">
-        <span class="resource-kind">WORKING GROUP</span>
-        <h3>OOSEM Working Group home</h3>
-        <p>Current charter, scope, and ongoing activity for the group that maintains and evolves OOSEM — including work to align it with SysML v2.</p>
-        <a class="go" href="https://www.incose.org/group/object-oriented-se-method-working-group/" target="_blank" rel="noopener">incose.org/group/object-oriented-se-method-working-group →</a>
-      </div>
-
-      <div class="resource-card">
-        <span class="resource-kind">CHARTER (PDF)</span>
-        <h3>Working Group charter</h3>
-        <p>The working group's founding charter document: purpose, scope, history, and how OOSEM relates to methods like Harmony and RUP SE.</p>
-        <a class="go" href="https://www.incose.org/docs/default-source/wgcharters/object-oriented-se-method.pdf" target="_blank" rel="noopener">incose.org — WG charter PDF →</a>
-      </div>
-
-      <div class="resource-card">
-        <span class="resource-kind">TRAINING</span>
-        <h3>Introductory OOSEM &amp; SysML tutorial</h3>
-        <p>An INCOSE Chesapeake Chapter tutorial introducing OOSEM alongside SysML, built around <em>A Practical Guide to SysML</em>. A good entry point before reading primary papers.</p>
-        <a class="go" href="https://www.incose-cc.org/events/2022-10-22-introduction-to-object-oriented-systems-engineering-method-oosem-and-the-systems-modeling-language" target="_blank" rel="noopener">incose-cc.org — tutorial page →</a>
-      </div>
-
-      <div class="resource-card">
-        <span class="resource-kind">REFERENCE WIKI</span>
-        <h3>OMG MBSE Wiki: OOSEM entry</h3>
-        <p>A reference summary of OOSEM maintained on the OMG-hosted MBSE wiki, with a bibliography of the foundational papers and books.</p>
-        <a class="go" href="https://www.omgwiki.org/MBSE/doku.php?id=mbse:incoseoosem" target="_blank" rel="noopener">omgwiki.org — MBSE:OOSEM →</a>
-      </div>
-
-      <div class="resource-card">
-        <span class="resource-kind">INTERNATIONAL WORKSHOP</span>
-        <h3>IW 2019 working-group brief</h3>
-        <p>A marketplace summary from an INCOSE International Workshop covering the working group's history, product roadmap, and planned inputs to the SE Handbook and SysML spec.</p>
-        <a class="go" href="https://www.incose.org/docs/default-source/events-documents/iw2019/wis-market-place/iw2019-wgis2-object-oriented_systems_engineering_method_oosem.pdf" target="_blank" rel="noopener">incose.org — IW2019 brief PDF →</a>
-      </div>
-
-      <div class="resource-card">
-        <span class="resource-kind">ORGANIZATION</span>
-        <h3>INCOSE home</h3>
-        <p>The International Council on Systems Engineering — for the Systems Engineering Handbook, chapters, certification, and the full list of working groups beyond OOSEM.</p>
-        <a class="go" href="https://www.incose.org/" target="_blank" rel="noopener">incose.org →</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="community">
-    <p class="section-mark">06 — Community &amp; tooling</p>
-    <h2>Where OOSEM meets open-source MBSE</h2>
-    <p class="col muted">OOSEM is method-only — it doesn't prescribe a tool. These are the open-source communities building the SysML/KerML tooling and model management infrastructure it's commonly practiced with.</p>
-
-    <div class="resource-grid">
-      <div class="resource-card">
-        <span class="resource-kind">COMMUNITY</span>
-        <h3>OpenMBEE</h3>
-        <p>The open-source Model-Based Systems Engineering environment, including Model Management System (MMS) tooling for storing and serving system models.</p>
-        <a class="go" href="https://www.openmbee.org/" target="_blank" rel="noopener">openmbee.org →</a>
-      </div>
-
-      <div class="resource-card">
-        <span class="resource-kind">COMMUNITY</span>
-        <h3>OpenSysML</h3>
-        <p>The community forum and resource hub for SysML v2 and KerML, covering the transition from SysML v1 and the surrounding open ecosystem.</p>
-        <a class="go" href="https://www.opensysml.org/" target="_blank" rel="noopener">opensysml.org →</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="reading">
-    <p class="section-mark">07 — Further reading</p>
-    <h2>Foundational papers &amp; texts</h2>
-    <ul class="reading-list col">
-      <li><span class="cite-year">2009</span> — Friedenthal, Moore &amp; Steiner, <strong>A Practical Guide to SysML</strong> (Morgan Kaufmann / OMG Press). Chapter 16 applies SysML directly to OOSEM and is the basis for most current OOSEM training.</li>
-      <li><span class="cite-year">2008</span> — Estefan, <strong>Survey of Model-Based Systems Engineering (MBSE) Methodologies</strong>, INCOSE Technical Publication. Places OOSEM alongside other MBSE methods of the era.</li>
-      <li><span class="cite-year">2000</span> — Lykins, Friedenthal, Sanford &amp; Meilich, <strong>Adapting UML for an Object-Oriented Systems Engineering Method (OOSEM)</strong>, INCOSE International Symposium proceedings — one of the method's founding papers.</li>
-    </ul>
-  </section>
-
-  <footer>
-    <div class="wrap" style="padding:0;">MBSE / SysML resource brief — compiled for reference alongside the OpenMBEE and OpenSysML community wikis.</div>
-  </footer>
-
-</div>
-
+  <div class="card">
+    <p class="mark">MBSE / SysML resource</p>
+    <h1>Coming soon.</h1>
+    <p>This page is still being drafted. Check back shortly, or watch the wiki sidebar for it to appear.</p>
+    <div class="frame"><span class="dot"></span> in progress</div>
+  </div>
 </body>
 </html>
